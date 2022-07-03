@@ -18,7 +18,6 @@ export default function TelaLogin() {
 
     function Logar(event) {
         event.preventDefault()
-        console.log("logando");
 
         function setData(resToken, resName) {
             setToken(resToken);
