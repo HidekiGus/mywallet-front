@@ -1,18 +1,47 @@
-import ReactDOM from "react-dom";
-import React, { useEffect, useState } from "react";
-import { BrowserRouter, Routes, Route, Link, useParams, useNavigate } from "react-router-dom";
+import React, { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import styled from "styled-components";
 import { useContext } from "react";
 
-export default function TelaLogin() {
+import NameContext from "../contexts/NameContext";
 
+
+export default function TelaLogin() {
+    
+    const { setName } = useContext(NameContext);
+    const { setToken } = useContext(NameContext);
     const [ email, setEmail ] = useState('');
     const [ password, setPassword ] = useState('');
     const [ isDisabled, setIsDisabled ] = useState(false);
+    const navigate = useNavigate();
 
-    function Logar() {
-        console.log("logando")
+    function Logar(event) {
+        event.preventDefault()
+        console.log("logando");
+
+        function setData(resToken, resName) {
+            setToken(resToken);
+            setName(resName);
+        }
+
+        function loginApproved(res) {
+            if (res.length !== 0) {
+            const { token: resToken, name: resName } = res.data;
+            setData(resToken, resName);
+            }
+            navigate("/home");
+        }
+
+        const body = {
+            email,
+            password
+        };
+
+        const promise = axios.post("http://localhost:5000/login", body);
+
+        promise.then(loginApproved);
+        promise.catch(()=> {alert("Dados incorretos!")});
     }
 
     return (
@@ -23,7 +52,7 @@ export default function TelaLogin() {
                     <input required placeholder="Senha" type="password" disabled={isDisabled} value={password} onChange={(e) => setPassword(e.target.value)} />
                     <button disabled={isDisabled} type="submit">Entrar</button> 
                 </form>
-                <Link to="/cadastro" style={{ textDecoration: "none" }}>
+                <Link to="/sign-up" style={{ textDecoration: "none" }}>
                     <Cadastro>Primeira vez? Cadastre-se!</Cadastro>
                 </Link>
             </Tela>

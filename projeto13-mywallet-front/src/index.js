@@ -7,17 +7,20 @@ import styled from "styled-components";
 import "./reset.css";
 
 import TelaLogin from "./components/TelaLogin";
+import TelaCadastro from "./components/TelaCadastro";
 import NameContext from "./contexts/NameContext";
 
 export default function App() {
 
     const [ name, setName ] = useState('');
+    const [ token, setToken ] = useState('');
 
     return(
-        <NameContext.Provider value={{ name, setName }} >
+        <NameContext.Provider value={{ name, setName, token, setToken }} >
             <BrowserRouter>
                 <Routes>
                     <Route path="/" element={<TelaLogin />} />
+                    <Route path="/sign-up" element={<TelaCadastro />} />
                 </Routes>
             </BrowserRouter>
         </NameContext.Provider>
