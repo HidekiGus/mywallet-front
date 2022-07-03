@@ -82,13 +82,6 @@ const Tela = styled.div`
         flex-direction: column;
     }
 
-    img {
-        width: 50vw;
-        height: fit-content;
-        margin-top: 10vh;
-        margin-bottom: 8vh;
-    }
-
     input {
     width: 80vw;
     height: 8vh;
@@ -110,7 +103,7 @@ const Tela = styled.div`
 
     button {
     width: 80vw;
-    height: 8vh;
+    height: 6vh;
     border-radius: 5px;
     border: 1px solid #A328D6;
     background-color: #A328D6;
