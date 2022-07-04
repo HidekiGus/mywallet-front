@@ -74,7 +74,7 @@ export default function TelaHome() {
                 <h1>Olá, {name}</h1>
                 <img onClick={sair} src={ExitImage} />
             </ContainerTopo>
-            <ContainerDados>
+            <ContainerDados tamanho={transactions.length}>
                 <ContainerRegistros>
                     {transactions.length === 0 ? 
                     <h1>Não há registros de<br/>entrada ou saída</h1> : 
@@ -143,7 +143,7 @@ const ContainerDados = styled.div`
 
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: ${props => props.tamanho === 0 ? "center" : "space-between"};
     flex-direction: column;
 
     h1 {

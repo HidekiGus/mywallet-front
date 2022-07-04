@@ -1,14 +1,14 @@
 import ReactDOM from "react-dom";
-import React, { useEffect, useState } from "react";
-import { BrowserRouter, Routes, Route, Link, useParams } from "react-router-dom";
-import axios from "axios";
-import styled from "styled-components";
+import React, { useState } from "react";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 import "./reset.css";
 
 import TelaLogin from "./components/TelaLogin";
 import TelaCadastro from "./components/TelaCadastro";
 import TelaHome from "./components/TelaHome";
+import TelaNovaEntrada from "./components/TelaNovaEntrada";
+import TelaNovaSaida from "./components/TelaNovaSaida";
 import NameContext from "./contexts/NameContext";
 
 export default function App() {
@@ -23,6 +23,8 @@ export default function App() {
                     <Route path="/" element={<TelaLogin />} />
                     <Route path="/sign-up" element={<TelaCadastro />} />
                     <Route path="/home" element={<TelaHome />} />
+                    <Route path="/nova-entrada" element={<TelaNovaEntrada />} />
+                    <Route path="/nova-saida" element={<TelaNovaSaida />} />
                 </Routes>
             </BrowserRouter>
         </NameContext.Provider>
