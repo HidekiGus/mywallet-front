@@ -81,7 +81,7 @@ export default function TelaHome() {
                     transactions.map(transaction => renderTransactions(transaction))}
                 </ContainerRegistros>
                 {transactions.length === 0 ? "" : 
-                <ContainerSaldo>
+                <ContainerSaldo negativo={saldo < 0}>
                     <h1>SALDO</h1>
                     <h2>{saldo.toFixed(2).replace(".", ",")}</h2>
                 </ContainerSaldo>
@@ -266,6 +266,6 @@ const ContainerSaldo = styled.div`
         font-family: "Raleway";
         font-size: 17px;
         font-weight: 400;
-        color: #03AC00;
+        color: ${props => props.negativo ? "#C70000" : "#03AC00"};
     }
 `
