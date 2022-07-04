@@ -92,7 +92,7 @@ export default function TelaHome() {
                     <img src={PlusImage} />
                     <h1>Nova <br/> entrada</h1>
                 </button>
-                <button onClick={() => console.log("menos")}>
+                <button onClick={() => navigate("/nova-saida")}>
                     <img src={MinusImage} />
                     <h1>Nova <br/> saída</h1>
                 </button>
