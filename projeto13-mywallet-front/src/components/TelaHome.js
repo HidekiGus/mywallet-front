@@ -200,7 +200,7 @@ const ContainerTransacoes = styled.div`
     align-items: center;
     justify-content: space-between;
 
-    margin: 2px 0;
+    margin: 6px 0;
 `
 
 const ContainerRegistros = styled.div`
