@@ -16,7 +16,7 @@ export default function TelaHome() {
     const { name, token } = useContext(NameContext);
 
     const [ transactions, setTransactions ] = useState([]);
-    const [ saldo, setSaldo ] = useState(null);
+    const [ saldo, setSaldo ] = useState(0);
 
     useEffect(() => {
         const config = {
@@ -49,29 +49,44 @@ export default function TelaHome() {
                     <h2>{description}</h2>
                 </Informacoes>
                 <Valor tipo={type === "entrada"}>
-                    <h1>{amount.toFixed(2).replace(".", ",")}</h1>
+                    <h1>{parseFloat(amount).toFixed(2).replace(".", ",")}</h1>
                 </Valor>
             </ContainerTransacoes>
-        )
+        );
+    };
+
+    function sair() {
+        const config = {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        }
+
+        const promise = axios.delete("http://localhost:5000/sessions", config);
+
+        promise.then(() => navigate("/"));
+        promise.catch(() => alert("Algo deu errado! Tente novamente."));
     }
 
     return(
         <Tela>
             <ContainerTopo>
                 <h1>Olá, {name}</h1>
-                <img onClick={() => console.log("saiu")} src={ExitImage} />
+                <img onClick={sair} src={ExitImage} />
             </ContainerTopo>
-            <ContainerRegistros>
-                {transactions.length === 0 ? 
-                <h1>Não há registros de<br/>entrada ou saída</h1> : 
-                transactions.map(transaction => renderTransactions(transaction))}
+            <ContainerDados>
+                <ContainerRegistros>
+                    {transactions.length === 0 ? 
+                    <h1>Não há registros de<br/>entrada ou saída</h1> : 
+                    transactions.map(transaction => renderTransactions(transaction))}
+                </ContainerRegistros>
                 {transactions.length === 0 ? "" : 
                 <ContainerSaldo>
                     <h1>SALDO</h1>
                     <h2>{saldo.toFixed(2).replace(".", ",")}</h2>
                 </ContainerSaldo>
                 }
-            </ContainerRegistros>
+            </ContainerDados>
             <ContainerBotoes>
                 <button onClick={() => console.log("mais")}>
                     <img src={PlusImage} />
@@ -118,19 +133,17 @@ const ContainerTopo = styled.div`
     }
 `
 
-const ContainerRegistros = styled.div`
+const ContainerDados = styled.div`
     width: 90vw;
     height: 70vh;
     background-color: #FFFFFF;
-
-    position: relative;
 
     border-radius: 5px;
     padding-top: 10px;
 
     display: flex;
     align-items: center;
-    justify-content: flex-start;
+    justify-content: space-between;
     flex-direction: column;
 
     h1 {
@@ -187,7 +200,15 @@ const ContainerTransacoes = styled.div`
     align-items: center;
     justify-content: space-between;
 
-    margin: 5px 0;
+    margin: 2px 0;
+`
+
+const ContainerRegistros = styled.div`
+    overflow-y: scroll;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    flex-direction: column;
 `
 
 const Informacoes = styled.div`
@@ -227,14 +248,12 @@ const Valor = styled.div`
 
 const ContainerSaldo = styled.div`
     width: 82vw;
-    height: 2vh;
+    height: 5vh;
+    background-color: #FFFFFF;
 
     display: flex;
     align-items: center;
     justify-content: space-between;
-
-    position: absolute;
-    bottom: 2vh;
 
     h1 {
         font-family: "Raleway";
