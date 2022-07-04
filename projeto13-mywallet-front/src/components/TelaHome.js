@@ -88,7 +88,7 @@ export default function TelaHome() {
                 }
             </ContainerDados>
             <ContainerBotoes>
-                <button onClick={() => console.log("mais")}>
+                <button onClick={() => navigate("/nova-entrada")}>
                     <img src={PlusImage} />
                     <h1>Nova <br/> entrada</h1>
                 </button>
