@@ -25,7 +25,7 @@ export default function TelaCadastro() {
             passwordCheck
         }
 
-        const promessa = axios.post("http://localhost:5000/signup", corpo);
+        const promessa = axios.post("https://back-projeto13-wallet.herokuapp.com/signup", corpo);
 
         promessa.then(() => navigate("/"));
 

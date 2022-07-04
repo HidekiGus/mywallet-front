@@ -37,7 +37,7 @@ export default function TelaLogin() {
             password
         };
 
-        const promise = axios.post("http://localhost:5000/login", body);
+        const promise = axios.post("https://back-projeto13-wallet.herokuapp.com/login", body);
 
         promise.then(loginApproved);
         promise.catch(()=> {alert("Dados incorretos!")});

@@ -25,7 +25,7 @@ export default function TelaHome() {
             }
         }
 
-        const promise = axios.get("http://localhost:5000/transactions", config);
+        const promise = axios.get("https://back-projeto13-wallet.herokuapp.com/transactions", config);
 
         promise.then(response => {
             setTransactions(response.data.userTransactions);
@@ -62,7 +62,7 @@ export default function TelaHome() {
             }
         }
 
-        const promise = axios.delete("http://localhost:5000/sessions", config);
+        const promise = axios.delete("https://back-projeto13-wallet.herokuapp.com/sessions", config);
 
         promise.then(() => navigate("/"));
         promise.catch(() => alert("Algo deu errado! Tente novamente."));

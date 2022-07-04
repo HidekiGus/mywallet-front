@@ -27,7 +27,7 @@ export default function TelaNovaEntrada() {
             type: "entrada"
         }
     
-        const promise = axios.post("http://localhost:5000/transactions", body, config);
+        const promise = axios.post("https://back-projeto13-wallet.herokuapp.com/transactions", body, config);
 
         promise.then(() => navigate("/home"));
         promise.catch(() => alert("Confira os dados e tente novamente!"));
