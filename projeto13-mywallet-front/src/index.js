@@ -8,6 +8,7 @@ import "./reset.css";
 
 import TelaLogin from "./components/TelaLogin";
 import TelaCadastro from "./components/TelaCadastro";
+import TelaHome from "./components/TelaHome";
 import NameContext from "./contexts/NameContext";
 
 export default function App() {
@@ -21,6 +22,7 @@ export default function App() {
                 <Routes>
                     <Route path="/" element={<TelaLogin />} />
                     <Route path="/sign-up" element={<TelaCadastro />} />
+                    <Route path="/home" element={<TelaHome />} />
                 </Routes>
             </BrowserRouter>
         </NameContext.Provider>
