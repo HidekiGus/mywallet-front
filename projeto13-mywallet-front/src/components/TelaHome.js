@@ -248,7 +248,7 @@ const Valor = styled.div`
 
 const ContainerSaldo = styled.div`
     width: 82vw;
-    height: 5vh;
+    height: 8vh;
     background-color: #FFFFFF;
 
     display: flex;
